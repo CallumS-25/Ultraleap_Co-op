@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Shape
+  - Hands
   layers:
   - Default
   - TransparentFX
