@@ -1,16 +1,18 @@
+using Leap;
 using UnityEngine;
 
 public class ShapeHeight : MonoBehaviour
 {
 
     public Vector3 totalHeight;
+    private Vector3 handsTransformOveride;
     public Camera Camera;
-    public GameObject HeightFollower;
-
-
+    public LeapServiceProvider Hands;
     //Visually displays the bounding box
+
     private void OnDrawGizmos()
     {
+        
         //Draw each child's bounds
         Gizmos.color = new Color(1f, 0.5f, 0f, 0.1f);
         foreach (var child in GetComponentsInChildren<Collider>())
@@ -21,7 +23,9 @@ public class ShapeHeight : MonoBehaviour
         var maxBounds = GetMaxBounds(gameObject);
         Gizmos.DrawCube(maxBounds.center, maxBounds.size);
         totalHeight.y = maxBounds.size.y + 0.1f;
-        Debug.Log("Total height is " + totalHeight);
+        handsTransformOveride.y = -0.5f;
+        handsTransformOveride.z = 0.6f;
+        //Debug.Log("Total height is " + totalHeight);
     }
 
     Bounds GetMaxBounds(GameObject parent)
@@ -37,6 +41,8 @@ public class ShapeHeight : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        //if (Vector3.Distance) << maybe use this???
         Camera.transform.position = totalHeight;
+        Hands.transform.position = totalHeight + handsTransformOveride;
     }
 }
