@@ -8,6 +8,7 @@ public class ShapeSpawner : MonoBehaviour
     public GameObject[] Shapes;
     public GameObject Parent;
     public GameObject[] spawnPoints;
+    public SpawnerCollider[] colliders;
 
     [Header("Spawn Settings")]
     public bool stopSpawning;
@@ -22,13 +23,16 @@ public class ShapeSpawner : MonoBehaviour
     public void SpawnObject()
     {
         int randomIndex = Random.Range(0, Shapes.Length);
-        int randomSpawnPosition = (Random.Range(0, spawnPoints.Length));
-
-        Instantiate(Shapes[randomIndex], spawnPoints[randomSpawnPosition].transform.position, Quaternion.identity).transform.parent = Parent.transform;
-
+        int randomSpawnPosition = Random.Range(0, spawnPoints.Length);
+        
         if (stopSpawning)
         {
             CancelInvoke(nameof(SpawnObject));
+        }
+
+        if (colliders[randomSpawnPosition].canSpawn == true)
+        {
+            Instantiate(Shapes[randomIndex], spawnPoints[randomSpawnPosition].transform.position, Quaternion.identity).transform.parent = Parent.transform;
         }
     }
 

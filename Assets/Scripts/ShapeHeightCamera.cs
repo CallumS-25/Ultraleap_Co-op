@@ -6,6 +6,8 @@ public class ShapeHeightCamera : MonoBehaviour
 
     public Vector3 totalHeight;
     public Camera Camera;
+    public GameObject floatingSpawners;
+
     //Visually displays the bounding box
 
     private void OnDrawGizmos()
@@ -37,7 +39,18 @@ public class ShapeHeightCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        //if (Vector3.Distance) << maybe use this???
         Camera.transform.position = totalHeight;
+
+        if (totalHeight.y >= 0.25f)
+        {
+            floatingSpawners.gameObject.SetActive(true);
+            //Debug.LogWarning("Platforms ON");
+        }
+        else
+        {
+            floatingSpawners.gameObject.SetActive(false);
+            //Debug.LogWarning("Platforms OFF");
+        }
+
     }
 }

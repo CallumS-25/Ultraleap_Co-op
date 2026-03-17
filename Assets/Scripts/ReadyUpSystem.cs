@@ -29,7 +29,7 @@ public class ReadyUpSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GetComponent<ShapeSpawner>();
+        //GetComponent<ShapeSpawner>();
         countdownTimer = 3;
         countdownEnd = countdownTimer;
         countdownCanvas.enabled = false;
@@ -70,12 +70,10 @@ public class ReadyUpSystem : MonoBehaviour
                 if(countdownEnd > 60)
                 {
                     FormatToMinSec();
-                    //Debug.LogWarning("FORMATED");
                 }
                 else
                 {
-                    countdownText.text = countdownEnd.ToString("0.00");
-                    //Debug.LogWarning("OVER HERE.");
+                    countdownText.text = countdownEnd.ToString("0.0");
                 }
             }
             else
@@ -89,8 +87,9 @@ public class ReadyUpSystem : MonoBehaviour
         else
         {
             welcomeCanvas.enabled = true;
-            countdownTimer = 3;
+            countdownEnd = 3;
             countdownCanvas.enabled = false;
+            //Debug.LogWarning("TIMER RESET");
         }
     }
 }
