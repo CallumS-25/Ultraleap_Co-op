@@ -15,7 +15,6 @@ public class ShapeHeightPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //WARNING: SHAPES SPAWNING ON THE PLATFORM WON'T SPAWN ON THE PLATFORM DUE TO THE SHAPES BEING IN THE TOTAL HEIGHT, MOVING THE CAMERA AND THEREFORE THE FLOATING SPAWNER.
         spawnerPlatform.transform.position = ShapeHeightCamera.totalHeight + transformOverride;
     }
 }

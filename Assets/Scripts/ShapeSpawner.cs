@@ -36,6 +36,11 @@ public class ShapeSpawner : MonoBehaviour
         }
     }
 
+    public void ChangeParent()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {

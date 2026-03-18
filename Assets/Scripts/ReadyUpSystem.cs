@@ -1,8 +1,5 @@
 using TMPro;
-using UnityEditor.PackageManager.Requests;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ReadyUpSystem : MonoBehaviour
 {
@@ -29,7 +26,6 @@ public class ReadyUpSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //GetComponent<ShapeSpawner>();
         countdownTimer = 3;
         countdownEnd = countdownTimer;
         countdownCanvas.enabled = false;
