@@ -34,6 +34,7 @@ public class ShapeSpawner : MonoBehaviour
         {
             GameObject obj = Instantiate(Shapes[randomIndex], spawnPoints[randomSpawnPosition].transform.position, Quaternion.identity, transform.parent);
             obj.GetComponent<ParentChange>().Object = Parent;
+            Debug.Log(obj + " is now " + Parent);
         }
     }
 
