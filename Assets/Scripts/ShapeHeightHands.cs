@@ -1,5 +1,4 @@
 using Leap;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShapeHeightHands : MonoBehaviour
@@ -8,6 +7,11 @@ public class ShapeHeightHands : MonoBehaviour
     private Vector3 handsTransformOverride;
     public ShapeHeightCamera ShapeHeightCamera;
     public LeapServiceProvider Hands;
+    
+
+    [Header("Hand Smooth Movement Settings")]
+    public float smoothTime = 15;
+    public Vector3 velocity = new Vector3(0, 0, 0);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +23,6 @@ public class ShapeHeightHands : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Hands.transform.position = ShapeHeightCamera.totalHeight + handsTransformOverride;
+        Hands.transform.position = Vector3.SmoothDamp(Hands.transform.position, ShapeHeightCamera.totalHeight + handsTransformOverride , ref velocity, smoothTime);
     }
 }

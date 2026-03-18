@@ -32,13 +32,9 @@ public class ShapeSpawner : MonoBehaviour
 
         if (colliders[randomSpawnPosition].canSpawn == true)
         {
-            Instantiate(Shapes[randomIndex], spawnPoints[randomSpawnPosition].transform.position, Quaternion.identity).transform.parent = Parent.transform;
+            GameObject obj = Instantiate(Shapes[randomIndex], spawnPoints[randomSpawnPosition].transform.position, Quaternion.identity, transform.parent);
+            obj.GetComponent<ParentChange>().Object = Parent;
         }
-    }
-
-    public void ChangeParent()
-    {
-
     }
 
     // Update is called once per frame

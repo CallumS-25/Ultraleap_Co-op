@@ -8,6 +8,10 @@ public class ShapeHeightCamera : MonoBehaviour
     public Camera Camera;
     public GameObject floatingSpawners;
 
+    [Header("Camera Smooth Movement Settings")]
+    public float smoothTime = 15;
+    public Vector3 velocity = new Vector3(0, 0, 0);
+
     //Visually displays the bounding box
 
     private void OnDrawGizmos()
@@ -39,18 +43,6 @@ public class ShapeHeightCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Camera.transform.position = totalHeight;
-
-        if (totalHeight.y >= 0.25f)
-        {
-            floatingSpawners.gameObject.SetActive(true);
-            //Debug.LogWarning("Platforms ON");
-        }
-        else
-        {
-            floatingSpawners.gameObject.SetActive(false);
-            //Debug.LogWarning("Platforms OFF");
-        }
-
+        Camera.transform.position = Vector3.SmoothDamp(Camera.transform.position, totalHeight, ref velocity, smoothTime);
     }
 }
