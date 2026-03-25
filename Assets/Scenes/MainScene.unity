@@ -2654,6 +2654,7 @@ MonoBehaviour:
   ShapeHeight: {fileID: 660430951}
   heightMeasurer: {fileID: 627786926}
   transformOverride: {x: -0.009, y: -0.29999, z: 0.775}
+  delayTimer: 0
   currentHeightScore: 0
   highestHeightScore: 0
   smoothTime: 0.7
@@ -2661,6 +2662,7 @@ MonoBehaviour:
   scoreCanvas: {fileID: 1793725179}
   highestScoreText: {fileID: 1201433582}
   currentScoreText: {fileID: 1741205169}
+  delayScore: 0
 --- !u!43 &549775973
 Mesh:
   m_ObjectHideFlags: 0
@@ -3884,11 +3886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b2969a9021b674a8d74457cd6a98a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &793195462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481279275633608576, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
-  m_PrefabInstance: {fileID: 2087291595}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &802753020
 GameObject:
   m_ObjectHideFlags: 0
@@ -12911,7 +12908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -12966,6 +12963,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -13018,6 +13019,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 762560997}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 547901005}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -13031,6 +13036,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
@@ -13048,6 +13057,10 @@ PrefabInstance:
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: DelayScore
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -13106,6 +13119,10 @@ PrefabInstance:
       value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UIHeightScore, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
@@ -13161,6 +13178,10 @@ PrefabInstance:
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
+      propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5481279275633608576, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: m_Name
       value: Physical Hands Manager
@@ -13171,10 +13192,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1234652847329689332, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       insertIndex: -1
       addedObject: {fileID: 114245861}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5481279275633608576, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2087291600}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
 --- !u!4 &2087291596 stripped
 Transform:
@@ -13186,39 +13204,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
   m_PrefabInstance: {fileID: 2087291595}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793195462}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d69077fd953cb86488e8a7b2090e7754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2087291600
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793195462}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!43 &2102844694
 Mesh:
   m_ObjectHideFlags: 0

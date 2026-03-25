@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class UIHeightScore : MonoBehaviour
     public ShapeHeightCamera ShapeHeight;
     public GameObject heightMeasurer;
     public Vector3 transformOverride;
+    [SerializeField] public float delayTimer;
 
     [Header("Height Measurer Score")]
     public float currentHeightScore;
@@ -21,25 +23,51 @@ public class UIHeightScore : MonoBehaviour
     public TMP_Text highestScoreText;
     [SerializeField]
     public TMP_Text currentScoreText;
+    [SerializeField] public bool delayScore;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        delayTimer = 3;
+    }
 
+    public void DelayScore()
+    {
+       delayTimer = 1.5f;
+       delayScore = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        heightMeasurer.transform.position = Vector3.SmoothDamp(heightMeasurer.transform.position, ShapeHeight.totalHeight + transformOverride, ref velocity, smoothTime);
-        currentHeightScore = ShapeHeight.totalHeight.y * 10 - 1;
-
-        if (currentHeightScore > highestHeightScore)
+        if (delayScore)
         {
-            highestHeightScore = currentHeightScore;
-        }
+            //Debug.LogWarning("DELAY TIME IS ON.");
+            if (delayTimer > 0)
+            {
+                delayTimer -= Time.deltaTime;
+                currentScoreText.color = Color.softRed;
+            }
+            else
+            {
+                //Debug.Log("DELAY TIME'S UP.");
+                heightMeasurer.transform.position = Vector3.SmoothDamp(heightMeasurer.transform.position, ShapeHeight.totalHeight + transformOverride, ref velocity, smoothTime);
+                currentHeightScore = ShapeHeight.totalHeight.y * 10 - 1;
 
-        currentScoreText.text = "Current Score: " + currentHeightScore.ToString("F1") + "M";
-        highestScoreText.text = "Highest Score: " + highestHeightScore.ToString("F1") + "M";
+                if (currentHeightScore > highestHeightScore)
+                {
+                    highestHeightScore = currentHeightScore;
+                }
+
+                currentScoreText.text = "Current Score: " + currentHeightScore.ToString("F1") + "M";
+                highestScoreText.text = "Highest Score: " + highestHeightScore.ToString("F1") + "M";
+                delayScore = false;
+                currentScoreText.color = Color.white;
+            }
+        }
+        else
+        {
+            //Debug.LogWarning("DELAY SCORE IS OFF.");
+        }
     }
 }
