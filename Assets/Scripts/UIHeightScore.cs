@@ -1,4 +1,4 @@
-using Mono.Cecil.Cil;
+
 using TMPro;
 using UnityEngine;
 
@@ -50,24 +50,24 @@ public class UIHeightScore : MonoBehaviour
             }
             else
             {
-                //Debug.Log("DELAY TIME'S UP.");
-                heightMeasurer.transform.position = Vector3.SmoothDamp(heightMeasurer.transform.position, ShapeHeight.totalHeight + transformOverride, ref velocity, smoothTime);
-                currentHeightScore = ShapeHeight.totalHeight.y * 10 - 1;
-
-                if (currentHeightScore > highestHeightScore)
-                {
-                    highestHeightScore = currentHeightScore;
-                }
-
-                currentScoreText.text = "Current Score: " + currentHeightScore.ToString("F1") + "M";
-                highestScoreText.text = "Highest Score: " + highestHeightScore.ToString("F1") + "M";
                 delayScore = false;
-                currentScoreText.color = Color.white;
+                //Debug.Log("DELAY TIME'S UP.");
             }
         }
         else
         {
             //Debug.LogWarning("DELAY SCORE IS OFF.");
+            heightMeasurer.transform.position = Vector3.SmoothDamp(heightMeasurer.transform.position, ShapeHeight.totalHeight + transformOverride, ref velocity, smoothTime);
+            currentHeightScore = ShapeHeight.totalHeight.y * 10 - 1;
+
+            if (currentHeightScore > highestHeightScore)
+            {
+                highestHeightScore = currentHeightScore;
+            }
+
+            currentScoreText.text = "Current Score: " + currentHeightScore.ToString("F1") + "M";
+            highestScoreText.text = "Highest Score: " + highestHeightScore.ToString("F1") + "M";
+            currentScoreText.color = Color.white;
         }
     }
 }

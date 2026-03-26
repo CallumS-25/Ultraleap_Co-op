@@ -1,4 +1,4 @@
-using Leap;
+
 using UnityEngine;
 
 public class DestroyShape : MonoBehaviour

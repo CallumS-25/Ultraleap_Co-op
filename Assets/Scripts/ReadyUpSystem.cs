@@ -1,3 +1,4 @@
+
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class ReadyUpSystem : MonoBehaviour
     Canvas welcomeCanvas;
     [SerializeField]
     public Canvas countdownCanvas;
+    [SerializeField]
+    public Canvas heightScoreCanvas;
     [SerializeField]
     public TMP_Text countdownText;
     public float countdownTimer;
@@ -76,6 +79,7 @@ public class ReadyUpSystem : MonoBehaviour
             {
                 welcomeCanvas.gameObject.SetActive(false);
                 countdownCanvas.gameObject.SetActive(false);
+                heightScoreCanvas.gameObject.SetActive(true);
                 ShapeSpawner.gameObject.SetActive(true);
                 //Debug.LogWarning("TIME'S UP!");
             }
