@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ReadyUpSystem : MonoBehaviour
 {
+
     [Header("Timer Settings")]
     [SerializeField]
     Canvas welcomeCanvas;
@@ -14,11 +15,13 @@ public class ReadyUpSystem : MonoBehaviour
     [SerializeField]
     public TMP_Text countdownText;
     public float countdownTimer;
-    private float countdownEnd;
+    public float countdownEnd;
 
     [Header("Callers")]
     [SerializeField]
     public ShapeSpawner ShapeSpawner;
+    [SerializeField]
+    public GameTimer GameTimer;
 
     [Header("Ready Up Settings")]
     [SerializeField]
@@ -81,6 +84,7 @@ public class ReadyUpSystem : MonoBehaviour
                 countdownCanvas.gameObject.SetActive(false);
                 heightScoreCanvas.gameObject.SetActive(true);
                 ShapeSpawner.gameObject.SetActive(true);
+                GameTimer.gameStarted = true;
                 //Debug.LogWarning("TIME'S UP!");
             }
         }
