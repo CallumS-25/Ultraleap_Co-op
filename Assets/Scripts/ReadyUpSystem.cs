@@ -7,7 +7,7 @@ public class ReadyUpSystem : MonoBehaviour
 
     [Header("Timer Settings")]
     [SerializeField]
-    Canvas welcomeCanvas;
+    public Canvas welcomeCanvas;
     [SerializeField]
     public Canvas countdownCanvas;
     [SerializeField]
@@ -21,7 +21,7 @@ public class ReadyUpSystem : MonoBehaviour
     [SerializeField]
     public ShapeSpawner ShapeSpawner;
     [SerializeField]
-    public GameTimer GameTimer;
+    public EndGameSystem EndGameSystem;
 
     [Header("Ready Up Settings")]
     [SerializeField]
@@ -84,7 +84,7 @@ public class ReadyUpSystem : MonoBehaviour
                 countdownCanvas.gameObject.SetActive(false);
                 heightScoreCanvas.gameObject.SetActive(true);
                 ShapeSpawner.gameObject.SetActive(true);
-                GameTimer.gameStarted = true;
+                EndGameSystem.gameStarted = true;
                 //Debug.LogWarning("TIME'S UP!");
             }
         }

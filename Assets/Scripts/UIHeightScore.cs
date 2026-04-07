@@ -28,7 +28,7 @@ public class UIHeightScore : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        delayTimer = 3;
+        delayTimer = 1.5f;
     }
 
     public void DelayScore()
@@ -64,7 +64,7 @@ public class UIHeightScore : MonoBehaviour
             {
                 highestHeightScore = currentHeightScore;
             }
-
+            //Note: F1 formats the float to 1 decimal place!
             currentScoreText.text = "Current Score: " + currentHeightScore.ToString("F1") + "M";
             highestScoreText.text = "Highest Score: " + highestHeightScore.ToString("F1") + "M";
             currentScoreText.color = Color.white;
