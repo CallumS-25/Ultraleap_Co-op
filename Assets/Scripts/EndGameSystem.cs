@@ -94,6 +94,12 @@ public class EndGameSystem : MonoBehaviour
 
     public void Restart()
     {
+        //ShapeSpawners
+        GameObject[] i = GameObject.FindGameObjectsWithTag("Shape");
+        foreach (GameObject go in i)
+        {
+            Destroy(go);
+        }
         gameTimer = 3;
         gameFinishedTimer = 3;
         ReadyUpSystem.Ready = false;
