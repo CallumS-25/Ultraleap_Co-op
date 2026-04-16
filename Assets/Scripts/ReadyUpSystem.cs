@@ -1,5 +1,7 @@
 
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ReadyUpSystem : MonoBehaviour
@@ -9,7 +11,7 @@ public class ReadyUpSystem : MonoBehaviour
     [SerializeField]
     public Canvas welcomeCanvas;
     [SerializeField]
-    public Canvas countdownCanvas;
+    public GameObject countdownCanvas;
     [SerializeField]
     public Canvas heightScoreCanvas;
     [SerializeField]
@@ -19,9 +21,13 @@ public class ReadyUpSystem : MonoBehaviour
 
     [Header("Callers")]
     [SerializeField]
+    public EndGameSystem EndGameSystem;
+    [SerializeField]
     public ShapeSpawner ShapeSpawner;
     [SerializeField]
-    public EndGameSystem EndGameSystem;
+    public List<SpawnerCollider> SpawnerColliders;
+    [SerializeField]
+    public UIHeightScore UIHeightScore;
 
     [Header("Ready Up Settings")]
     [SerializeField]
@@ -32,9 +38,10 @@ public class ReadyUpSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ShapeSpawner.gameObject.SetActive(false);
         countdownTimer = 3;
         countdownEnd = countdownTimer;
-        countdownCanvas.enabled = false;
+        countdownCanvas.gameObject.SetActive(false);
     }
 
     void FormatToMinSec()
@@ -65,7 +72,7 @@ public class ReadyUpSystem : MonoBehaviour
         if (Ready)
         {
             //Debug.LogWarning("Tick...");
-            countdownCanvas.enabled = true;
+            countdownCanvas.gameObject.SetActive(true);
             if (countdownEnd > 0)
             {
                 countdownEnd -= Time.deltaTime;
@@ -84,15 +91,27 @@ public class ReadyUpSystem : MonoBehaviour
                 countdownCanvas.gameObject.SetActive(false);
                 heightScoreCanvas.gameObject.SetActive(true);
                 ShapeSpawner.gameObject.SetActive(true);
+                SpawnerColliders.GetRange(0, SpawnerColliders.Count).ForEach(spawner => spawner.canSpawn = true);
+                GameObject[] i = GameObject.FindGameObjectsWithTag("Shape");
+                foreach (GameObject go in i)
+                {
+                    Destroy(go);
+                }
+                UIHeightScore.currentHeightScore = 0;
+                UIHeightScore.highestHeightScore = 0;
                 EndGameSystem.gameStarted = true;
                 //Debug.LogWarning("TIME'S UP!");
+            }
+            if (EndGameSystem.gameStarted == true)
+            {
+                countdownCanvas.gameObject.SetActive(false);
             }
         }
         else
         {
             welcomeCanvas.enabled = true;
             countdownEnd = 3;
-            countdownCanvas.enabled = false;
+            countdownCanvas.gameObject.SetActive(false);
             //Debug.LogWarning("TIMER RESET");
         }
     }

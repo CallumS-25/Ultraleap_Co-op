@@ -1543,10 +1543,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1851005470}
-    - target: {fileID: 2788816285267834696, guid: 4394ab17ce059fa43986dc2896db3ed4, type: 3}
-      propertyPath: canSpawn
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2860036100649750723, guid: 4394ab17ce059fa43986dc2896db3ed4, type: 3}
       propertyPath: m_Name
       value: Floating Spawner1
@@ -4014,17 +4010,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   welcomeCanvas: {fileID: 860462950}
-  countdownCanvas: {fileID: 547320314}
+  countdownCanvas: {fileID: 547320319}
   heightScoreCanvas: {fileID: 1793725179}
   countdownText: {fileID: 690696510}
   countdownTimer: 0
   countdownEnd: 0
-  EndGameSystem: {fileID: 547901006}
   ShapeSpawner: {fileID: 626415581}
-  SpawnerColliders:
-  - {fileID: 372421418}
-  - {fileID: 762560996}
-  UIHeightScore: {fileID: 547901005}
+  EndGameSystem: {fileID: 547901006}
   Ready: 0
   ReadyText: {fileID: 1048306292}
 --- !u!114 &547901005
@@ -4063,23 +4055,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8e00e1a4da8494ca4a34cafcccecd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
+  ShapeHeightPlatform:
+  - {fileID: 1215435103}
+  - {fileID: 762560997}
   UIHeightScore: {fileID: 547901005}
   ReadyUpSystem: {fileID: 547901004}
   ShapeSpawner: {fileID: 626415581}
-  SpawnerColliders:
-  - {fileID: 372421418}
-  - {fileID: 762560996}
   totalHeight: {fileID: 660430950}
   handPhysics: {fileID: 1512203168}
   hands: {fileID: 1488607693}
   Leaderboard: {fileID: 692040696}
   gameOver: {fileID: 629848204}
   finalScoreText: {fileID: 996738276}
-  gameOverText: {fileID: 1084181836}
+  gameTimerCanvas: {fileID: 848211674}
   gameTimerText: {fileID: 479182634}
   gameTimer: 0
   gameStarted: 0
   gameTimerFinished: 0
+  gameFinishedText: {fileID: 1084181836}
 --- !u!43 &549775973
 Mesh:
   m_ObjectHideFlags: 0
@@ -4542,7 +4535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &626415580
 Transform:
   m_ObjectHideFlags: 0
@@ -5589,10 +5582,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1488189203}
-    - target: {fileID: 2788816285267834696, guid: 4394ab17ce059fa43986dc2896db3ed4, type: 3}
-      propertyPath: canSpawn
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2860036100649750723, guid: 4394ab17ce059fa43986dc2896db3ed4, type: 3}
       propertyPath: m_Name
       value: Floating Spawner2
@@ -19365,11 +19354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContact.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
@@ -19409,11 +19398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1234652847329689333, guid: 710c6a51e481b5a419c8c7a3eae1bada, type: 3}
       propertyPath: onContactExit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument

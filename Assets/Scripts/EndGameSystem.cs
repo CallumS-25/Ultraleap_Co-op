@@ -2,19 +2,21 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.Experimental.Rendering;
 
 public class EndGameSystem : MonoBehaviour
 {
     [Header("Script Callers")]
     //SCRIPTS
     [SerializeField]
-    public List<ShapeHeightPlatform> ShapeHeightPlatform;
-    [SerializeField]
     public UIHeightScore UIHeightScore;
     [SerializeField]
     public ReadyUpSystem ReadyUpSystem;
     [SerializeField]
-    ShapeSpawner ShapeSpawner;
+    public ShapeSpawner ShapeSpawner;
+    [SerializeField]
+    public List<SpawnerCollider> SpawnerColliders;
     [Header("Children to Total Height")]
     //Children of Total Height
     [SerializeField]
@@ -36,7 +38,7 @@ public class EndGameSystem : MonoBehaviour
     [Header("Timer Settings")]
     //UI
     [SerializeField]
-    public Canvas gameTimerCanvas;
+    public TMP_Text gameOverText;
     [SerializeField]
     public TMP_Text gameTimerText;
     //GAME TIMER
@@ -52,16 +54,14 @@ public class EndGameSystem : MonoBehaviour
     public bool gameStarted;
     [SerializeField]
     public bool gameTimerFinished;
-    //GAME FINISHED UI
-    [SerializeField]
-    public TMP_Text gameFinishedText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameTimer = 3;
+        gameTimer = 180;
         gameTimerEnd = gameTimer;
-        gameTimerCanvas.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
+        gameTimerText.gameObject.SetActive(false);
         gameFinishedTimer = 3;
     }
 
@@ -76,16 +76,17 @@ public class EndGameSystem : MonoBehaviour
     public void GameFinished()
     {
        UIHeightScore.scoreCanvas.gameObject.SetActive(false);
-        gameFinishedText.gameObject.SetActive(true);
-        ShapeHeightPlatform.GetRange(0, ShapeHeightPlatform.Count).ForEach(platform => platform.gameObject.SetActive(false));
         handPhysics.gameObject.SetActive(false);
         hands.gameObject.SetActive(false);
         gameTimerText.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(true);
+        ShapeSpawner.gameObject.SetActive(false);
+        SpawnerColliders.GetRange(0, SpawnerColliders.Count).ForEach(spawner => spawner.canSpawn = true);
         //Debug.LogWarning("GAME TIME'S UP!");
     }
     public void ShowResults()
     {
-        gameFinishedText.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
         Leaderboard.gameObject.SetActive(true);
         gameOver.gameObject.SetActive(true);
         finalScoreText.color = Color.green;
@@ -100,14 +101,12 @@ public class EndGameSystem : MonoBehaviour
         {
             Destroy(go);
         }
-        gameTimer = 3;
+        gameTimer = 180;
         gameFinishedTimer = 3;
         ReadyUpSystem.Ready = false;
         finishDelay = false;
         gameStarted = false;
-        gameFinishedText.gameObject.SetActive(false);
         ReadyUpSystem.welcomeCanvas.gameObject.SetActive(true);
-        ShapeSpawner.gameObject.SetActive(false);
         Leaderboard.gameObject.SetActive(false);
         gameOver.gameObject.SetActive(false);
         handPhysics.gameObject.SetActive(true);
@@ -122,7 +121,7 @@ public class EndGameSystem : MonoBehaviour
         if (gameStarted)
         {
             //Debug.LogWarning("Tick...");
-            gameTimerCanvas.gameObject.SetActive(true);
+            gameTimerText.gameObject.SetActive(true);
             if (gameTimerEnd >= 0)
             {
                 gameTimerEnd -= Time.deltaTime;
