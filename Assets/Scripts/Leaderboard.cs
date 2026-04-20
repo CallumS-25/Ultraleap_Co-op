@@ -11,7 +11,7 @@ public class Leaderboard : MonoBehaviour
     [SerializeField]
     private List<TextMeshProUGUI> Scores;
 
-    private string publicLeaderBoardKey = "Leapderboard";
+    private string publicLeaderBoardKey = "LEAP";
 
 
     public void GetLeaderboard()

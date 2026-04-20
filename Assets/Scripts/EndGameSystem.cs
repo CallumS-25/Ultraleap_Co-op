@@ -103,7 +103,8 @@ public class EndGameSystem : MonoBehaviour
         }
         gameTimer = 180;
         gameFinishedTimer = 3;
-        ReadyUpSystem.Ready = false;
+        ReadyUpSystem.readyP1 = false;
+        ReadyUpSystem.readyP2 = false;
         finishDelay = false;
         gameStarted = false;
         ReadyUpSystem.welcomeCanvas.gameObject.SetActive(true);

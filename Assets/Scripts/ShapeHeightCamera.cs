@@ -11,13 +11,18 @@ public class ShapeHeightCamera : MonoBehaviour
 
     [Header("Camera Smooth Movement Settings")]
     public float smoothTime = 15;
+    public Vector3 cameraTransformOverride;
     public Vector3 velocity = new Vector3(0, 0, 0);
 
-    //Visually displays the bounding box
+    private void Start()
+    {
+        cameraTransformOverride.y = 0.2f;
+        cameraTransformOverride.z = -0.5f;
+    }
 
+    //Visually displays the bounding box
     private void OnDrawCube()
     {
-        
         //Draw each child's bounds
         foreach (var child in GetComponentsInChildren<Collider>())
         {
@@ -43,6 +48,6 @@ public class ShapeHeightCamera : MonoBehaviour
     void LateUpdate()
     {
         OnDrawCube();
-        Camera.transform.position = Vector3.SmoothDamp(Camera.transform.position, totalHeight, ref velocity, smoothTime);
+        Camera.transform.position = Vector3.SmoothDamp(Camera.transform.position, totalHeight + cameraTransformOverride, ref velocity, smoothTime);
     }
 }
