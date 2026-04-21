@@ -17,16 +17,18 @@ public class EndGameSystem : MonoBehaviour
     public ShapeSpawner ShapeSpawner;
     [SerializeField]
     public List<SpawnerCollider> SpawnerColliders;
+
     [Header("Children to Total Height")]
     //Children of Total Height
     [SerializeField]
     public GameObject totalHeight;
+
     [Header("Game Object Callers")]
     //HANDS
     [SerializeField]
-    public GameObject handPhysics;
+    public List<GameObject> handPhysics;
     [SerializeField]
-    public GameObject hands;
+    public List<GameObject> hands;
     //LEADERBOARD
     [SerializeField]
     public GameObject Leaderboard;
@@ -76,8 +78,8 @@ public class EndGameSystem : MonoBehaviour
     public void GameFinished()
     {
        UIHeightScore.scoreCanvas.gameObject.SetActive(false);
-        handPhysics.gameObject.SetActive(false);
-        hands.gameObject.SetActive(false);
+        handPhysics.GetRange(0, handPhysics.Count).ForEach(handphys => handphys.gameObject.SetActive(false));
+        hands.GetRange(0, hands.Count).ForEach(HANDS => HANDS.gameObject.SetActive(false));
         gameTimerText.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         ShapeSpawner.gameObject.SetActive(false);
@@ -110,8 +112,8 @@ public class EndGameSystem : MonoBehaviour
         ReadyUpSystem.welcomeCanvas.gameObject.SetActive(true);
         Leaderboard.gameObject.SetActive(false);
         gameOver.gameObject.SetActive(false);
-        handPhysics.gameObject.SetActive(true);
-        hands.gameObject.SetActive(true);
+        handPhysics.GetRange(0, handPhysics.Count).ForEach(handphys => handphys.gameObject.SetActive(true));
+        hands.GetRange(0, hands.Count).ForEach(HANDS => HANDS.gameObject.SetActive(true));
         gameTimerEnd = gameTimer;
         FormatToMinSec();
     }
